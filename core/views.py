@@ -4,6 +4,7 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
 from core.tasks import print_username  
+from django.shortcuts import render
 
 # PUBLIC API 
 @api_view(['GET'])
@@ -17,3 +18,6 @@ def public_view(request):
 @permission_classes([IsAuthenticated])
 def protected_view(request):
     return Response({'message': f'Hello {request.user.username}, this is a protected API!'})
+
+def home(request):
+    return render(request, 'home.html')
